@@ -1,0 +1,6 @@
+eca_autopost_facebook.admin_settings_form:
+  title: 'ECA Autopost Facebook'
+  route_name: eca_autopost_facebook.admin_settings_form
+  description: 'Post Content in your Facebook page'
+  parent: system.admin_config_content
+  weight: 99

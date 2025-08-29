@@ -1,0 +1,9 @@
+# Ruta de configuración del modulo
+# 
+eca_autopost_facebook.admin_settings_form:
+  path: '/admin/config/eca_autopost_facebook/adminsettings'
+  defaults:
+    _form: 'Drupal\eca_autopost_facebook\Form\ConfigForm'
+    _title: "Setting to automatically post to the user's Facebook Page"
+  requirements:  
+    _permission: 'administer site configuration'
