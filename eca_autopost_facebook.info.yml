@@ -1,7 +1,6 @@
 name: 'ECA Autopost Facebook'
 description: 'Create a custom Action in ECA for post in Facebook'
 type: module
-version: 1.0.0
 core_version_requirement: ^10.3 || ^11
 package: ECA
 configure: eca_autopost_facebook.admin_settings_form
