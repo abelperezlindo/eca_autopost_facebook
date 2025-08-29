@@ -86,6 +86,7 @@ class ConfigForm extends ConfigFormBase {
     $config      = $this->config($module_name . '.settings');
     $token       = $this->state->get($module_name . '.page_access_token', '');
     $page_id     = $this->state->get($module_name . '.page_id', '');
+    $api_version = $config->get('api_version') ?? 'v23.0';
     $form        = parent::buildForm($form, $form_state);
 
     $form['sections'] = [
@@ -98,6 +99,13 @@ class ConfigForm extends ConfigFormBase {
       '#type'   => 'details',
       '#title'  => $this->t('Facebook API Access Settings'),
       '#group'  => 'sections',
+    ];
+
+    $form['content_box']['api_version'] = [
+      '#type'           => 'textfield',
+      '#title'          => $this->t('Facebook API Version'),
+      '#description'    => $this->t('Use the version specified in the Facebook APP.'),
+      '#default_value'  => $api_version,
     ];
 
     $form['content_box']['page_id'] = [
@@ -145,6 +153,10 @@ class ConfigForm extends ConfigFormBase {
       $module_name . '.page_access_token',
       $form_state->getValue('page_access_token')
     );
+
+    $config = $this->config($module_name . '.settings');
+    $config->set('api_version', $form_state->getValue('api_version'));
+    $config->save();
 
     $this->messenger->addStatus($this->t('Facebook API settings saved.'));
     return parent::submitForm($form, $form_state);

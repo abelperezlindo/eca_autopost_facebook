@@ -115,7 +115,7 @@ class PostFacebook extends ConfigurableActionBase {
     // Obtiene el access_token y el page_id desde el estado de Drupal.
     $user_token = \Drupal::state()->get('eca_autopost_facebook.page_access_token', '');
     $page_id = \Drupal::state()->get('eca_autopost_facebook.page_id', '');
-
+    $api_version = \Drupal::config('eca_autopost_facebook.settings')->get('api_version') ?? 'v23.0';
     // Si no hay token o page_id, se sale de la función.
     if (empty($user_token) || empty($page_id)) {
       \Drupal::logger('eca_post_facebook')->warning('Token o Page ID faltante');
@@ -123,7 +123,7 @@ class PostFacebook extends ConfigurableActionBase {
     }
 
     // URL de la API de Facebook.
-    $url = 'https://graph.facebook.com/v23.0/' . $page_id . '/feed';
+    $url = 'https://graph.facebook.com/' . $api_version . '/' . $page_id . '/feed';
 
     // Datos que vamos a enviar en el POST.
 
@@ -132,7 +132,7 @@ class PostFacebook extends ConfigurableActionBase {
     try {
 
       $client = \Drupal::httpClient();
-      $user_data = $client->get('https://graph.facebook.com/v23.0/me/accounts', [
+      $user_data = $client->get('https://graph.facebook.com/'. $api_version .'/me/accounts', [
         'query' => [
           'access_token' => $user_token,
         ],
