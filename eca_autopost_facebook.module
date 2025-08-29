@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function eca_autopost_facebook_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.eca_autopost_facebook': // Replace 'mymodule' with your module's machine name.
+      $module_path = \Drupal::service('extension.path.resolver')
+        ->getPath('module', 'eca_autopost_facebook');
+      $readme_path = DRUPAL_ROOT . '/' . $module_path . '/README.md';
+
+      if (file_exists($readme_path)) {
+        $output = file_get_contents($readme_path);
+        return ['#markup' => '<pre>' . $output . '</pre>'];
+      }
+      break;
+  }
+  return NULL;
+}
