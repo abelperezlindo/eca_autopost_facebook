@@ -1,0 +1,14 @@
+{
+    "name": "drupal/eca_autopost_facebook",
+    "description": "Provides the ECA Autopost Facebook module",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/core": "^10.3 || ^11"
+    },
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/eca_autopost_facebook",
+        "source": "https://git.drupalcode.org/project/eca_autopost_facebook"
+    }
+}
