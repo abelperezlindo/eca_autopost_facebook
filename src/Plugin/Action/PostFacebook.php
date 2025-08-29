@@ -118,7 +118,7 @@ class PostFacebook extends ConfigurableActionBase {
     $api_version = \Drupal::config('eca_autopost_facebook.settings')->get('api_version') ?? 'v23.0';
     // Si no hay token o page_id, se sale de la función.
     if (empty($user_token) || empty($page_id)) {
-      \Drupal::logger('eca_post_facebook')->warning('Token o Page ID faltante');
+      \Drupal::logger('eca_post_facebook')->warning('Empty Access token or Page ID, skipping post.');
       return FALSE;
     }
 
