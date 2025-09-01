@@ -68,7 +68,10 @@ class FbPostTest extends KernelTestBase {
   }
 
   /**
-   * Tests actions of eca_cache.
+   * Tests actions of eca_autopost_facebook.
+   *
+   * See this example for mocking http client in kernel tests:
+   * https://git.drupalcode.org/project/build_hooks/-/blob/8.x-2.x/tests/src/Kernel/BuildHooksKernelTestBase.php#L91
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
