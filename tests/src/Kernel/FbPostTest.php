@@ -55,7 +55,7 @@ class FbPostTest extends KernelTestBase {
     'system',
     'user',
     'eca',
-    'eca_facebook_post',
+    'eca_autopost_facebook',
   ];
 
   /**
@@ -65,6 +65,12 @@ class FbPostTest extends KernelTestBase {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installConfig(static::$modules);
+    \Drupal::state()->set('eca_autopost_facebook.page_id', '10000000');
+    \Drupal::state()->set('eca_autopost_facebook.page_access_token', 'faketoken123');
+    $config = \Drupal::configFactory()
+      ->getEditable('eca_autopost_facebook.settings');
+    $config->set('api_version', 'v50.0');
+    $config->save();
   }
 
   /**
@@ -96,7 +102,7 @@ class FbPostTest extends KernelTestBase {
     /**
      * Who to make assertion here? TODO
      */
-    // $this->assertTrue($result instanceof DataTransferObject);
+    $this->assertTrue(!$result);
 
   }
 
