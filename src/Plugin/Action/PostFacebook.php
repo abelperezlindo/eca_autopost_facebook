@@ -159,7 +159,7 @@ class PostFacebook extends ConfigurableActionBase {
       // Realiza el POST usando el servicio http_client de Drupal.
       $response = $client->post($url, [
         'form_params' => [
-          'message' => $message,
+          'message' => $this->htmlToPlainText($message),
           'link' => $url,
           'access_token' => $page_access_token,
         ],
@@ -184,6 +184,16 @@ class PostFacebook extends ConfigurableActionBase {
       \Drupal::logger('eca_post_facebook')->warning('Error en la solicitud: ' . $e->getMessage());
       return FALSE;
     }
+  }
+
+  public static function htmlToPlainText(string $string): string {
+    $block_tags = '/<(p|div|h3|h4|h5|h6|cite|blockquote|code|li|tr|td|th|br)[^>]*>/i';
+    $string = preg_replace($block_tags, "\n", $string);
+    $string = strip_tags($string);
+    // The flags ENT_QUOTES and ENT_HTML5 tell to decode both double and single quotes.
+    $string = html_entity_decode($string, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $string = trim($string);
+    return $string;
   }
 
 }
