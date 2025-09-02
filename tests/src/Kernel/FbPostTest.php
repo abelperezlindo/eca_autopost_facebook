@@ -65,7 +65,7 @@ class FbPostTest extends KernelTestBase {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installConfig(static::$modules);
-    \Drupal::state()->set('eca_autopost_facebook.page_id', '10000000');
+    \Drupal::state()->set('eca_autopost_facebook.page_id', 'pageid123');
     \Drupal::state()->set('eca_autopost_facebook.page_access_token', 'faketoken123');
     $config = \Drupal::configFactory()
       ->getEditable('eca_autopost_facebook.settings');
@@ -83,10 +83,21 @@ class FbPostTest extends KernelTestBase {
    */
   public function testFbPostActions(): void {
 
+    // First 'mock' is for getting the page access token.
+    // Second 'mock' is for posting to the page feed.
     $this->mockClient(
     new Response('200', [], json_encode([
+      'data' => [
+        0 => [
+          'id' => 'pageid123',
+          'access_token' => 'faketoken12345',
+        ],
+      ]
+    ])),
+    new Response('200', [], json_encode([
       'id' => '1234567890',
-    ])));
+    ])),
+  );
 
     /** @var \Drupal\Core\Action\ActionManager $action_manager */
     $action_manager = \Drupal::service('plugin.manager.action');
@@ -100,9 +111,9 @@ class FbPostTest extends KernelTestBase {
     $result = $action->execute();
 
     /**
-     * Who to make assertion here? TODO
+     * $retun should be the post ID returned by Facebook API.
      */
-    $this->assertTrue(!$result);
+    $this->assertIsNumeric(!$result);
 
   }
 
