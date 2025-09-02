@@ -113,7 +113,7 @@ class FbPostTest extends KernelTestBase {
     /**
      * $retun should be the post ID returned by Facebook API.
      */
-    $this->assertIsNumeric(!$result);
+    $this->assertIsNumeric($result);
 
   }
 
