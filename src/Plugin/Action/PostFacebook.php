@@ -152,7 +152,7 @@ class PostFacebook extends ConfigurableActionBase {
         }
       }
       if (empty($page_access_token)) {
-        \Drupal::logger('eca_post_facebook')->warning('No se pudo obtener el token de acceso de la página.');
+        \Drupal::logger('eca_post_facebook')->warning('The access token for the page could not be obtained.');
         return FALSE;
       }
 
@@ -171,17 +171,17 @@ class PostFacebook extends ConfigurableActionBase {
       // Verifica si se recibió el post_id.
       $post_id = $body['id'] ?? FALSE;
       if ($post_id) {
-        \Drupal::logger('eca_post_facebook')->info('Post creado con éxito. Post ID: ' . $post_id);
+        \Drupal::logger('eca_post_facebook')->info('Post created successfully. Post ID: ' . $post_id);
         return $post_id;
       }
       else {
-        \Drupal::logger('eca_post_facebook')->warning('Error al crear el post.');
+        \Drupal::logger('eca_post_facebook')->warning('Error creating post.');
         return FALSE;
       }
     }
     catch (RequestException $e) {
       $responseBody = $e->getResponse()->getBody()->getContents();
-      \Drupal::logger('eca_post_facebook')->warning('Error en la solicitud: ' . $e->getMessage());
+      \Drupal::logger('eca_post_facebook')->warning('Error in the request: ' . $e->getMessage());
       return FALSE;
     }
   }

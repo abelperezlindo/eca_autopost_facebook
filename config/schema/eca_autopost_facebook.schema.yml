@@ -1,6 +1,6 @@
 eca_autopost_facebook.settings:
   type: config_object
-  label: 'Satings for ECA Autopost Facebook module'
+  label: 'Settings for "ECA Autopost Facebook" module'
   mapping:
     api_version:
       type: string
@@ -8,14 +8,14 @@ eca_autopost_facebook.settings:
 
 action.configuration.eca_post_facebook:
   type: mapping
-  label: 'Configuration for the "ECA Post in Facebook Page" action'
+  label: 'Settings for the "ECA Post in Facebook Page" action'
   mapping:
     message:
       type: string
-      label: 'Content message to post'
+      label: 'Content of Message to post'
     message_alternative:
       type: string
-      label: 'Content message to post when message is empty'
+      label: 'Alternative content Message to post when message is empty'
     link:
       type: string
       label: 'Link to include in the post'

@@ -1,6 +1,6 @@
 {
     "name": "drupal/eca_autopost_facebook",
-    "description": "Provides the ECA Autopost Facebook module",
+    "description": "Provides the ECA Post in Facebook Page module.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

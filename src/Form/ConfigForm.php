@@ -111,7 +111,8 @@ class ConfigForm extends ConfigFormBase {
     $form['content_box']['page_id'] = [
       '#type'           => 'textfield',
       '#title'          => $this->t('Facebook page id'),
-      '#description'    => $this->t('Facebook page id'),
+      '#description'    => $this->t(
+        'Facebook page id. '),
       '#default_value'  => $page_id,
     ];
 
@@ -119,17 +120,21 @@ class ConfigForm extends ConfigFormBase {
       '#type'           => 'textarea',
       '#title'          => $this->t('Facebook Page access token'),
       '#description'    => $this->t(
-        'Introduce el token de acceso del usuario con permisos de administrador
-        de la página.
-        Puedes usar un token de corta duración para pruebas, pero ten en cuenta que
-        expirará en poco tiempo. Se recomienda encarecidamente utilizar un token de
-        larga duración para evitar interrupciones en el servicio.
-        Para obtener un token de larga duración en Facebook, necesitas generar
-        primero un token de corta duración a través del <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph Explorer</a>
-        y luego intercambiarlo por uno de larga duración utilizando una solicitud al
-        servidor con tu ID de aplicación, clave secreta de la aplicación y el
-        token de corta duración obtenido previamente.
-        Puedes obtener mas informacion <a href="https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived" target="_blank" rel="noopener"> aquí</a>.'
+        'Enter the user access token with administrator permissions for the page.
+        You can use a short-lived token for testing, but keep in mind that it
+        will expire quickly. It is strongly recommended to use a long-lived
+        token to avoid service interruptions.
+        To obtain a long-lived token on Facebook, you first need to generate a
+        short-lived token through the <a href="@explorer" target="_blank"
+        rel="noopener">Graph Explorer</a> and then exchange it for a long-lived
+        one by making a request to the server with your App ID, App Secret, and
+        the previously obtained short-lived token.
+        You can find more information <a href="@fbdocs"
+        target="_blank" rel="noopener">here</a>.',
+        [
+          '@explorer' => 'https://developers.facebook.com/tools/explorer/',
+          '@fbdocs' => 'https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived'
+        ]
       ),
       '#default_value'  => $token,
     ];
